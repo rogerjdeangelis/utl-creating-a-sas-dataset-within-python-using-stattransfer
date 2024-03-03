@@ -8,6 +8,8 @@ Creating a sas dataset within python using stattransfer
     https://tinyurl.com/2jfhcrn9
     https://github.com/rogerjdeangelis/utl-creating-a-sas-dataset-within-python-using-stattransfer
 
+    My testing indicates you can set timeest=0, no sleep, if running outside the SAS Pyhton pipe
+
       PROGRAM FLOW
 
           1. Create a Panda dataframe by importing a sas dataset using pyreadstat
@@ -22,16 +24,16 @@ Creating a sas dataset within python using stattransfer
                 ,dfstr="students"  /* Quote input panda dataframe (no deparse(subsitute) in python?)  */
                 ,timeest=3         /* You need to estimate the time it takes for stattransfer to work */
                 )                  /* It seems that stattransfer does not provide a return code       */
-                                   /* Some form of a deadly embrace, only termonating the task works  */
-                                   /* You can only terminateafter the transfer has been completed     */
+                                   /* Some form of a deadly embrace, only terminating the task works  */
+                                   /* You can only terminate after the transfer has been completed     */
           8. The function creates a SPSS file that stattransfer will convert to a sas dataset
-             Feather does not work and I was unable to conver a sqlite database table using stattransfer ODBC.
+             Feather does not work and I was unable to convert a sqlite database table using stattransfer ODBC.
           7. The python function creates a subprocess to execute stattransfer
           8. After sleeping for n seconds the stattransfer subprocess is terminated.
              If you do not allow enough time the sas dataste will not be created.
-             I looked at python mutiprocessing but gave up because it seems very complex
-             I don't think it is posiible to get a completion code from stattrasfer. Looked into spawnging but failed to get it to work.
-          9 I also provided a clean task script if yo get zombie tasks. (also easy to close rogue command windows)
+             I looked at python multiprocessing but gave up because it seems very complex
+             I don't think it is possible to get a completion code from Stattrasfer. Looked into spawning but failed to get it to work.
+          9 I also provided a clean task script if you get zombie tasks. (also easy to close rogue command windows)
     /*               _     _
      _ __  _ __ ___ | |__ | | ___ _ __ ___
     | `_ \| `__/ _ \| `_ \| |/ _ \ `_ ` _ \
